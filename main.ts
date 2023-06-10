@@ -18,7 +18,7 @@ app.get('/addRecipe', (req: Request, res: Response) => {
 
 app.get('/getRecipe', (req: Request, res: Response) => {
   res.send({
-    headLine: 'Recipe headline!',
+    headline: 'Recipe headline!',
     link: 'https://sallysbakingaddiction.com/easy-homemade-soft-pretzels/',
     imageRaw:
       'https://sallysbakingaddiction.com/wp-content/uploads/2017/04/easy-homemade-soft-pretzels.jpg',
@@ -30,7 +30,7 @@ app.get('/getRecipe', (req: Request, res: Response) => {
 app.get('/loadRecipes', (req: Request, res: Response) => {
   res.send([
     {
-      headLine: 'Recipe headline!',
+      headline: 'Recipe headline!',
       link: 'https://sallysbakingaddiction.com/easy-homemade-soft-pretzels/',
       imageRaw:
         'https://sallysbakingaddiction.com/wp-content/uploads/2017/04/easy-homemade-soft-pretzels.jpg',
@@ -38,7 +38,7 @@ app.get('/loadRecipes', (req: Request, res: Response) => {
       workTime: 25,
     },
     {
-      headLine: 'Recipe headline!',
+      headline: 'Recipe headline!',
       link: 'https://sallysbakingaddiction.com/easy-homemade-soft-pretzels/',
       imageRaw:
         'https://sallysbakingaddiction.com/wp-content/uploads/2017/04/easy-homemade-soft-pretzels.jpg',
@@ -46,7 +46,7 @@ app.get('/loadRecipes', (req: Request, res: Response) => {
       workTime: 25,
     },
     {
-      headLine: 'Recipe headline!',
+      headline: 'Recipe headline!',
       link: 'https://sallysbakingaddiction.com/easy-homemade-soft-pretzels/',
       imageRaw:
         'https://sallysbakingaddiction.com/wp-content/uploads/2017/04/easy-homemade-soft-pretzels.jpg',
