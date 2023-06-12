@@ -35,35 +35,9 @@ app.get('/getRecipe', (req: Request, res: Response) => {
   });
 });
 
-app.get('/loadRecipes', (req: Request, res: Response) => {
-  res.send(queryRecipes({}, {}))
-  return 
-  res.send([
-    {
-      headline: 'Recipe headline!',
-      link: 'https://sallysbakingaddiction.com/easy-homemade-soft-pretzels/',
-      imageRaw:
-        'https://sallysbakingaddiction.com/wp-content/uploads/2017/04/easy-homemade-soft-pretzels.jpg',
-      categories: ['Sweat', 'Sour'],
-      workTime: 25,
-    },
-    {
-      headline: 'Recipe headline!',
-      link: 'https://sallysbakingaddiction.com/easy-homemade-soft-pretzels/',
-      imageRaw:
-        'https://sallysbakingaddiction.com/wp-content/uploads/2017/04/easy-homemade-soft-pretzels.jpg',
-      categories: ['Sweat', 'Sour'],
-      workTime: 25,
-    },
-    {
-      headline: 'Recipe headline!',
-      link: 'https://sallysbakingaddiction.com/easy-homemade-soft-pretzels/',
-      imageRaw:
-        'https://sallysbakingaddiction.com/wp-content/uploads/2017/04/easy-homemade-soft-pretzels.jpg',
-      categories: ['Sweat', 'Sour'],
-      workTime: 25,
-    },
-  ]);
+app.post('/loadRecipes', async (req: Request, res: Response) => {
+  const recipes = await queryRecipes(req.body["query"], req.body["options"]);
+  res.json(recipes)
 });
 
 // Start the server
