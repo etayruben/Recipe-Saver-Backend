@@ -13,7 +13,7 @@ interface Recipe {
   imageRaw: string;
   categories: string[];
   workTime: number;
-  id: number;
+  _id: string;
 }
 
 
@@ -48,6 +48,14 @@ async function insertRecipe(recipe: Recipe) {
     }
 
   }
+async function removeRecipe(_id: string) {
+  const recipesCollection = await getCollection("Recipe-Saver", "Recipes")
+
+  const recipe = { _id: _id };
+
+  const result = await recipesCollection.deleteOne(recipe);
+  return result
+}
 
 
 async function queryRecipes(query: Object, options: Object) {
@@ -59,4 +67,4 @@ async function queryRecipes(query: Object, options: Object) {
   }
 
 
-export {insertRecipe, queryRecipes};
+export {insertRecipe, queryRecipes, removeRecipe};
