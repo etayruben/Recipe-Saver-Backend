@@ -16,7 +16,9 @@ interface Recipe {
   id: number;
 }
 
+
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
+
 const client = new MongoClient(uri, {
   serverApi: {
     version: ServerApiVersion.v1,
@@ -34,33 +36,27 @@ async function getCollection(db_name: string, collection: string) {
 
 
 async function insertRecipe(recipe: Recipe) {
-  try {
-
     const recipesCollection = await getCollection("Recipe-Saver", "Recipes")
     const result = await recipesCollection.insertOne(recipe);
 
     if (result.acknowledged) {
       console.log("Inserted Correctly!");
+      return result
     } else {
       console.error("A problem occurred when inserting");
+      return result
     }
 
-  } finally {
-    // Ensures that the client will close when you finish/error
-    await client.close();
   }
-}
+
 
 async function queryRecipes(query: Object, options: Object) {
-  try {
     const recipesCollection = await getCollection("Recipe-Saver", "Recipes")
     const result = await recipesCollection.find(query, options).toArray();
 
     console.log('Found recipes:', result);
-  } finally {
-    // Close the connection to the MongoDB server
-    await client.close();
+    return result
   }
-}
+
 
 export {insertRecipe, queryRecipes};
