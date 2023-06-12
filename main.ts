@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 import cors from 'cors';
-import {insertRecipe, queryRecipes} from "./db/api"
+import {insertRecipe, queryRecipes, removeRecipe } from "./db/api"
 
 const app = express();
 const port = 5500;
@@ -18,9 +18,18 @@ app.post("/addMultipleRecipes", (req: Request, res: Response) => {
 })
 
 app.post('/addRecipe', async (req: Request, res: Response) => {
-  console.info(req);
   await insertRecipe(req.body)
   res.send("Recipe Added!")
+});
+
+app.post('/removeRecipe', async (req: Request, res: Response) => {
+  console.log(req.body, "line 26")
+  const result = await removeRecipe(req.body)
+  if (result.acknowledged){
+    res.send("Recipe Removed!")
+  } else {
+    res.send("There was a problem in the server")
+  }
 });
 
 app.post('/loadRecipes', async (req: Request, res: Response) => {
