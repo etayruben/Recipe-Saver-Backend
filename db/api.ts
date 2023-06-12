@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 dotenv.config();
-import { MongoClient, ServerApiVersion } from 'mongodb';
+import { MongoClient, ServerApiVersion, ObjectId } from 'mongodb';
 
 let uri = process.env.MONGODB_URI;
 if (uri === undefined) {
@@ -51,9 +51,9 @@ async function insertRecipe(recipe: Recipe) {
 async function removeRecipe(_id: string) {
   const recipesCollection = await getCollection("Recipe-Saver", "Recipes")
 
-  const recipe = { _id: _id };
+  const recipe = { _id: new ObjectId(_id) };
 
-  const result = await recipesCollection.deleteOne(recipe);
+  const result = await recipesCollection.deleteOne({recipe});
   return result
 }
 
