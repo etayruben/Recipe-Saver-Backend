@@ -6,6 +6,7 @@ const app = express();
 const port = 5500;
 
 app.use(express.json());
+app.use(express.text());
   
 app.use(cors());
 
@@ -23,7 +24,6 @@ app.post('/addRecipe', async (req: Request, res: Response) => {
 });
 
 app.post('/removeRecipe', async (req: Request, res: Response) => {
-  console.log(req.body, "line 26")
   const result = await removeRecipe(req.body)
   if (result.acknowledged){
     res.send("Recipe Removed!")
