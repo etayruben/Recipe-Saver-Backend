@@ -25,15 +25,18 @@ const client = new MongoClient(uri, {
   }
 });
 
+async function getCollection(db_name: string, collection: string) {
+  await client.connect();
+  console.log("You successfully connected to MongoDB!");
+  const database = client.db(db_name);
+  return database.collection<Recipe>(collection);
+}
+
+
 async function insertRecipe(recipe: Recipe) {
   try {
-    // Connect the client to the server (optional starting in v4.7)
-    await client.connect();
-    console.log("You successfully connected to MongoDB!");
-    const database = client.db('Recipe-Saver');
 
-    const recipesCollection = database.collection<Recipe>("Recipes");
-
+    const recipesCollection = await getCollection("Recipe-Saver", "Recipes")
     const result = await recipesCollection.insertOne(recipe);
 
     if (result.acknowledged) {
@@ -48,4 +51,16 @@ async function insertRecipe(recipe: Recipe) {
   }
 }
 
-export default insertRecipe;
+async function queryRecipes(query: Object, options: Object) {
+  try {
+    const recipesCollection = await getCollection("Recipe-Saver", "Recipes")
+    const result = await recipesCollection.find(query, options).toArray();
+
+    console.log('Found recipes:', result);
+  } finally {
+    // Close the connection to the MongoDB server
+    await client.close();
+  }
+}
+
+export {insertRecipe, queryRecipes};
