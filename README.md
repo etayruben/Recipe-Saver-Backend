@@ -13,7 +13,6 @@ Before you begin, ensure that you have the following prerequisites installed on 
 - Node.js (latest version)
 - Express (latest version)
 - MongoDB (latest version)
-- [Insert any other dependencies]
 
 ## Installation
 To install the Recipe-Saver backend project, follow these steps:
