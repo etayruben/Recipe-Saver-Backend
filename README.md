@@ -31,7 +31,7 @@ Before running the server, you need to configure the application. Follow these s
 To start the backend server for Recipe-Saver, follow these steps:
 1. Ensure that your MongoDB instance is running.
 2. Run the server: `$ npm start` or `$ yarn start`.
-3. The server should start running on the specified port (default is `3000`).
+3. The server should start running on the specified port (default is `5500`).
 4. You should see a message indicating that the server has started successfully.
 
 ## API Documentation
